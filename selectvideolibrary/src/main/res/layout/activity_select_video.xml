@@ -8,7 +8,7 @@
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#e91d01">
+        android:background="#000">
 
         <ImageView
             android:id="@+id/title_back"

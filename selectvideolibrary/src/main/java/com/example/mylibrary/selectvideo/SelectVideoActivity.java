@@ -49,19 +49,25 @@ public class SelectVideoActivity extends DefaultBaseActivity implements SwipeRef
     private RelativeLayout actionbar;
     private ImageView img_album_arrow, recordVideoImg;
     private TextView select_video;
-    public int width,height;
+    protected int width,height;
+    private int titleColor,tag,recordTime=60;
 
     @Override
     protected void initialize() {
         setContentView(R.layout.activity_select_video);
+        titleColor=getIntent().getIntExtra("titleColor",0xff00000);
+        tag=getIntent().getIntExtra("tag",1001);
+        recordTime=getIntent().getIntExtra("recordTime",60);
     }
 
     @Override
     protected void initView() {
         width = ScreenUtil.getScreenWidth(context);
         height = ScreenUtil.getStatusHeight(context);
+
         recordVideoImg = (ImageView) findViewById(R.id.recordVideoImg);
         actionbar = (RelativeLayout) findViewById(R.id.actionbar);
+        actionbar.setBackgroundColor(titleColor);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.Gray, R.color.Gray, R.color.Gray, R.color.Gray);
@@ -79,11 +85,10 @@ public class SelectVideoActivity extends DefaultBaseActivity implements SwipeRef
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 //设置视频录制的最长时间
-                intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 60);
+                intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, recordTime);
                 //设置视频录制的画质
                 intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
                 startActivityForResult(intent, 123);
-//                startActivityForResult(new Intent(SelectVideoActivity.this, RecordVideoActivity.class), ResultTag.recordVideoIn);
             }
         });
     }
@@ -125,7 +130,7 @@ public class SelectVideoActivity extends DefaultBaseActivity implements SwipeRef
                         public void SimpleOnItemClick(final BaseQuickAdapter adapter, View view, final int position) {
                             Intent i = new Intent();
                             i.putExtra("videoPath", ((List<Video>) adapter.getData()).get(position).getPath());
-                            setResult(111, i);
+                            setResult(tag, i);
                             finish();
                         }
                     });
