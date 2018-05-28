@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.mylibrary.selectvideo.SelectVideo;
 import com.example.mylibrary.selectvideo.SelectVideoActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SelectVideoActivity.class));
+                SelectVideo.openSelectVideo(MainActivity.this);
             }
         });
     }
