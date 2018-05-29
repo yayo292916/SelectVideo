@@ -31,6 +31,7 @@ import com.example.mylibrary.selectvideo.provider.VideoProvider;
 import com.example.mylibrary.selectvideo.utils.AdapterUtils;
 import com.example.mylibrary.selectvideo.utils.ScreenUtil;
 import com.example.mylibrary.selectvideo.utils.StatusBarHeightUtil;
+import com.gyf.barlibrary.ImmersionBar;
 
 
 import java.io.File;
@@ -51,9 +52,11 @@ public class SelectVideoActivity extends DefaultBaseActivity implements SwipeRef
     private TextView select_video;
     protected int width,height;
     private int titleColor,tag,recordTime=60;
+    private View barColor;
 
     @Override
     protected void initialize() {
+        ImmersionBar.with(this).init();
         setContentView(R.layout.activity_select_video);
         titleColor=getIntent().getIntExtra("titleColor",0xff00000);
         tag=getIntent().getIntExtra("tag",1001);
@@ -64,10 +67,11 @@ public class SelectVideoActivity extends DefaultBaseActivity implements SwipeRef
     protected void initView() {
         width = ScreenUtil.getScreenWidth(context);
         height = ScreenUtil.getStatusHeight(context);
-
+        barColor=findViewById(R.id.barColor);
         recordVideoImg = (ImageView) findViewById(R.id.recordVideoImg);
         actionbar = (RelativeLayout) findViewById(R.id.actionbar);
         actionbar.setBackgroundColor(titleColor);
+        barColor.setBackgroundColor(titleColor);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.Gray, R.color.Gray, R.color.Gray, R.color.Gray);
@@ -255,6 +259,13 @@ public class SelectVideoActivity extends DefaultBaseActivity implements SwipeRef
                     .asBitmap()
                     .into(simpleDraweeView);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        ImmersionBar.with(this).destroy();
+        super.onDestroy();
+
     }
 
     @Override

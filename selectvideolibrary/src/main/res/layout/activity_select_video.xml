@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#f2f2f2">
+
+    <View
+        android:id="@+id/barColor"
+        android:background="#000"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_height"
+        />
 
     <RelativeLayout
         android:id="@+id/actionbar"
@@ -76,4 +84,4 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</RelativeLayout>
+</LinearLayout>

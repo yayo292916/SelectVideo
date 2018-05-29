@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="status_bar_height">25dp</dimen>
+
+</resources>
