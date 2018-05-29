@@ -1,5 +1,6 @@
 # SelectVideo
-简单的依赖
+<br>简单的依赖</br>
+```java
 	allprojects {
 		repositories {
 			...
