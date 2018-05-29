@@ -10,7 +10,7 @@
 	}
   
   dependencies {
-	        compile 'com.github.yayo292916:SelectVideo:1.0.0'
+	        compile 'com.github.yayo292916:SelectVideo:1.0.1'
 	}
 
 ##使用方法
